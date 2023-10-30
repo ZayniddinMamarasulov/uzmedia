@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">UzMediaPlayer</string>
+    <string name="test_link">http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4</string>
+</resources>
