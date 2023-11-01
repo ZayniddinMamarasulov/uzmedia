@@ -1,6 +1,7 @@
 package uz.tune.uzmediaplayer
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -134,6 +135,15 @@ class MainActivity : AppCompatActivity(), MediaPlayer.OnPreparedListener {
         if (isPaused.not()) {
             player?.start()
             binding.tvAllTime.text = player?.duration?.let { millisToMinute(it) }
+
+            val metaData = MediaMetadataRetriever()
+            metaData.setDataSource(songsList[currentSongIndex])
+            val singer = metaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST)
+            val songName = metaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE)
+
+            binding.tvSongTitle.text = songName
+            binding.tvSingerName.text = singer
+            setSongImage(songsList[currentSongIndex])
         } else
             player?.seekTo(player.currentPosition)
     }
@@ -195,6 +205,18 @@ class MainActivity : AppCompatActivity(), MediaPlayer.OnPreparedListener {
         }
     }
 
+    private fun setSongImage(filePath: String) {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(filePath)
+        val art = retriever.embeddedPicture
+
+        if (art != null) {
+            binding.ivSong.setImageBitmap(BitmapFactory.decodeByteArray(art, 0, art.size))
+        } else {
+//            binding.ivSong.setImageResource(R.drawable.editbox_background)
+        }
+    }
+
     private fun millisToMinute(songDuration: Int): String {
         val min = songDuration.div(1000).div(60)
         val sec = (songDuration - min * 60 * 1000) / 1000
@@ -203,4 +225,6 @@ class MainActivity : AppCompatActivity(), MediaPlayer.OnPreparedListener {
         else
             "$min:$sec"
     }
+
+
 }

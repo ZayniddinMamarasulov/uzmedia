@@ -7,16 +7,41 @@
     tools:context=".MainActivity">
 
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_song"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_song_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:textSize="28sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_singer_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_song"
+        tools:text="This is title title title  title title title title title title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_singer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@id/btn_play"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="This is title" />
+        tools:text="Singer" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_play"
